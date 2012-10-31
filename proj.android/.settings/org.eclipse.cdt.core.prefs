@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+environment/project/0.464316641/PATH/delimiter=;
+environment/project/0.464316641/PATH/operation=replace
+environment/project/0.464316641/PATH/value=C\:\\Program Files (x86)\\AMD APP\\bin\\x86_64;C\:\\Program Files (x86)\\AMD APP\\bin\\x86;%CommonProgramFiles%\\Microsoft Shared\\Windows Live;C\:\\windows\\system32;C\:\\windows;C\:\\windows\\System32\\Wbem;C\:\\windows\\System32\\WindowsPowerShell\\v1.0\\;C\:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;D\:\\DVCS\\Git\\cmd;C\:\\Program Files\\TortoiseSVN\\bin;D\:\\SDKs\\Android\\android-sdk\\platform-tools;D\:\\SDKs\\Android\\android-sdk\\platform-tools\\apktool;D\:\\SDKs\\Android\\android-sdk\\platform-tools;D\:\\SDKs\\Android\\android-sdk\\platform-tools\\dex2jar;C\:\\Program Files\\Java\\jdk1.7.0_01\\bin;D\:\\cygwin\\NitroPigSoft02\\android-ndk-r7b;D\:\\cygwin\\usr\\include;D\:\\cygwin\\usr\\sbin;C\:\\Program Files\\Common Files\\Microsoft Shared\\Windows Live;D\:\\cygwin\\bin
+environment/project/0.464316641/append=true
+environment/project/0.464316641/appendContributed=true
