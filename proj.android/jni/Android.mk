@@ -9,7 +9,8 @@ LOCAL_MODULE_FILENAME := libgame
 LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
                    ../../Classes/HelloWorldScene.cpp\
-                   ../../Classes/Cocos2dFacade.cpp
+                   ../../Classes/Cocos2dFacade.cpp \
+                   ../../Classes/StartScene.cpp
                    
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes 
 

@@ -4,10 +4,13 @@
 #include "../touch_dispatcher/CCTouch.h"
 #include "Cocos2dFacade.h"
 #include "npLinkNode.h"
-
+#include "CCControlButton.h"
+#include "CCControlButtonLoader.h"
+#include  <math.h>
 
 using namespace cocos2d;
 using namespace CocosDenshion;
+using namespace extension;
 
 #define COCOS2D_DEBUG 1
 
@@ -33,27 +36,6 @@ bool HelloWorld::init() {
 		return false;
 	}
 
-	///////////////////////////// 이거 왜안되지
-	// 2. add a menu item with "X" image, which is clicked to quit the program
-	//    you may modify it.
-
-	// add a "close" icon to exit the progress. it's an autorelease object
-	/* CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
-	 "CloseNormal.png",
-	 "CloseSelected.png",
-	 this,
-	 menu_selector(HelloWorld::menuCloseCallback) );
-	 pCloseItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20) );
-
-	 // create menu, it's an autorelease object
-	 CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
-	 pMenu->setPosition( CCPointZero );
-	 this->addChild(pMenu, 1);*/
-
-	/////////////////////////////
-	// 3. add your codes below...
-	// add a label shows "Hello World"
-	// create and initialize a label
 	CCLabelTTF* pLabel = CCLabelTTF::create("Hello Puzzle Ball", "Thonburi",
 			34);
 
@@ -88,44 +70,9 @@ bool HelloWorld::init() {
 	SetCreateNormalBlock();
 
 	/* Move Player */
-
-	//int rangeY = maxY - minY;
-	// srand( TimGetTicks() );
-	//int actualY = ( rand() % rangeY ) + minY;
-
-	// Create the actions
-
-	//CCFiniteTimeAction* actionMove = CCMoveTo::actionWithDuration(10,ccp(10,10));
-
-	//CCFiniteTimeAction* actionMoveDone = CCCallFuncN::actionWithTarget(this,
-	//		callfuncN_selector(HelloWorld::spriteMoveFinished));
-	//target->runAction(CCSequence::actions(actionMove, actionMoveDone, NULL));
-
-	//playerBall->runAction(CCSequence::actions(
-	//		CCSequence::actions(actionMove, NULL)
-	//);
-
-	//playerBall->runAction(CCSequence::actions(actionMove,0));
-
-
 	CCSprite* animSprite = CCSprite::create("1.png",CCRectMake(0,0,107,108));
 	Cocos2dFacade::MoveTo(animSprite,10,500,200);
-
 	CCAnimation* anim = CCAnimation::create();
-	/*anim->setDelayPerUnit(0.1f);
-	anim->addSpriteFrameWithFileName("1.png");
-	anim->addSpriteFrameWithFileName("2.png");
-	anim->addSpriteFrameWithFileName("3.png");
-	anim->addSpriteFrameWithFileName("4.png");
-	anim->addSpriteFrameWithFileName("5.png");
-	anim->addSpriteFrameWithFileName("6.png");
-	anim->addSpriteFrameWithFileName("7.png");
-	anim->addSpriteFrameWithFileName("8.png");
-	anim->addSpriteFrameWithFileName("9.png");
-	anim->addSpriteFrameWithFileName("10.png");
-	anim->addSpriteFrameWithFileName("11.png");
-	anim->addSpriteFrameWithFileName("12.png");*/
-
 	CCAnimate* anmate = Cocos2dFacade::CreateTextureFrameAnimate(0.1f,
 			"1.png",
 			"2.png",
@@ -140,7 +87,6 @@ bool HelloWorld::init() {
 			"11.png",
 			"12.png",
 			0);
-
 	//텍스쳐를 반대로 하면 렉이걸린다. 이것을 해결해야한다./
 	Cocos2dFacade::SetTextureFrameAnimationForever(animSprite,anmate);
 	CCAction* act = Cocos2dFacade::CreateReverseTextureFrame(anmate);
@@ -150,6 +96,19 @@ bool HelloWorld::init() {
 
 	Cocos2dFacade::MoveTo(playerBall,30,10,10);
 	Cocos2dFacade::PlayBackgroundSound("result6.wma");
+
+
+//	CCScale9Sprite* btnSp = CCScale9Sprite::create("start_button.png");
+//	extension::CCControlButton* button = CCControlButton::buttonWithBackgroundSprite(
+//			btnSp
+///			);
+//	Cocos2dFacade::AddChild(this,btnSp);
+
+
+//	double a   =  5;
+
+//	sqrt(a);
+
 
 
 	//없데이트 구문을 추가한다.
@@ -263,16 +222,6 @@ void HelloWorld::Update(float dt) {
 			float x,y,width,height;
 			if(block[h][w] == 0) continue;
 
-			/*CCSize size = this->block[h][w]->getContentSize();
-			width = size.width;
-			height = size.height;
-			block[h][w]->getPosition(&x,&y);
-			blockRect = CCRectMake(x,y,width,height);
-
-			if(CCRect::CCRectIntersectsRect(blockRect,playerBallRect)){
-				Cocos2dFacade::RemoveChild(this,block[h][w],true);
-				block[h][w] = 0;
-			}*/
 			if(Cocos2dFacade::CheckRectIntersectsRect(playerBall,block[h][w])){
 				Cocos2dFacade::RemoveChild(this,block[h][w],true);
 				block[h][w] = 0;
@@ -281,10 +230,7 @@ void HelloWorld::Update(float dt) {
 	}
 }
 
-void HelloWorld::didAccelerate(CCAcceleration* pAccelerationValue) {
-	//float x = pAccelerationValue->x;
-	//float y = pAccelerationValue->y;
-	//float z = pAccelerationValue->z;
+void HelloWorld::didAccelerate(CCAcceleration* pAccelerationValue)\
+{
 
-	//CCLog("CurrentTime : %lf,%lf,%f",x,y,z);
 }

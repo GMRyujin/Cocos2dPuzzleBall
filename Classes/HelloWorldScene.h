@@ -4,7 +4,6 @@
 #include "cocos2d.h"
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
-#include "npLinkNode.h"
 
 #define BLOCK_WIDTH 30
 #define BLOCK_HEIGHT 13
@@ -47,6 +46,7 @@ public:
     virtual void didAccelerate(CCAcceleration* pAccelerationValue);
 
     void Update(float dt);//없데이트 타이머
+
 private:
     CCSprite* playerBall;
     CCSprite* block[BLOCK_HEIGHT][BLOCK_WIDTH];

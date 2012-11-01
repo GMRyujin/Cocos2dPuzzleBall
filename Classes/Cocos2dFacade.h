@@ -15,6 +15,7 @@ class Cocos2dFacade
 {
 public:
 	/* Create */
+	static cocos2d::CCSprite* CreateSprite(const char* file_name);
 	static cocos2d::CCSprite* CreateSprite(const char* file_name,const cocos2d::CCRect& rect);
 	static cocos2d::CCSprite* CreateSprite(const char* file_name,const cocos2d::CCRect& rect,const cocos2d::CCSize& size);
 	static cocos2d::CCSprite* CreateSprite(const char* file_name,const cocos2d::CCRect& rect,const cocos2d::CCSize& size,const cocos2d::CCPoint& loc);
@@ -51,10 +52,10 @@ public:
 
 	/* 맨 뒤의 아웃풋 인인자는 해당오브젝트이 배열 번호이다. */
 	static cocos2d::CCNode* FindChildByPoint(cocos2d::CCNode** array,int length,float x,float y,int* out_number = 0);
-	//static cocos2d::CCNode* FindChildByPoint(cocos2d::CCNode** array,int firstLength,int secondLength,float x,float y,int* out_f = 0,int* out_s = 0);
 
 	static void MoveTo(cocos2d::CCNode* target,const float duration,const float x,const float y);
 
+	static bool CheckRectIntersectPoint(cocos2d::CCNode* node,const cocos2d::CCPoint& p);
 	static bool CheckRectIntersectsRect(cocos2d::CCNode* nodeA,cocos2d::CCNode* nodeB);
 
 	static void PlayEffectSound(const char* fileName,bool bLoop = true);
@@ -68,6 +69,7 @@ public:
 	//애니메이션을  target에 설정한다.
 	static void SetTextureFrameAnimationForever(cocos2d::CCNode* target,cocos2d::CCAnimate* anim);
 	static void SetTextureFrameAction(cocos2d::CCNode* target,cocos2d::CCAction* act);
+
 private:
 };
 

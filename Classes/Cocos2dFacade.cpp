@@ -11,6 +11,12 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
+CCSprite* Cocos2dFacade::CreateSprite(const char* file_name)
+{
+	CCSprite* sp = CCSprite::spriteWithFile(file_name);
+	return sp;
+}
+
 CCSprite* Cocos2dFacade::CreateSprite(const char* file_name,const CCRect& rect)
 {
 	CCSprite* sp = CCSprite::create(file_name,rect);
@@ -116,6 +122,20 @@ void Cocos2dFacade::MoveTo(CCNode* target,const float duration,const float x,con
 {
 	CCFiniteTimeAction* action = CCMoveTo::actionWithDuration(duration,ccp(x,y));
 	target->runAction(CCSequence::actions(action,0));
+}
+
+bool Cocos2dFacade::CheckRectIntersectPoint(CCNode* node,const CCPoint& point)
+{
+	float x,y,width,height;
+	CCSize size = node->getContentSize();
+	width = size.width;
+	height = size.height;
+	node->getPosition(&x,&y);
+	CCRect rect = CCRectMake(x - width/2,y - height/2,width,height);
+
+	CCLOG("%lf %lf %lf %lf",x,y,width,height);
+
+	return rect.containsPoint(point) ? true : false;
 }
 
 bool Cocos2dFacade::CheckRectIntersectsRect(CCNode* nodeA,CCNode* nodeB)

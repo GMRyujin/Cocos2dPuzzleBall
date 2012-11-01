@@ -212,10 +212,22 @@ obj/local/armeabi/objs-debug/game_shared/__/__/Classes/HelloWorldScene.o: \
  /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../cocos2dx/support/data_support/uthash.h \
  /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../CocosDenshion/android/../include/SimpleAudioEngine.h \
  /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../CocosDenshion/android/../include/Export.h \
- jni/../../Classes/npLinkNode.h \
  /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../cocos2dx/kazmath/include/../../menu_nodes/CCMenuItem.h \
  /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../cocos2dx/include/../touch_dispatcher/CCTouch.h \
- jni/../../Classes/Cocos2dFacade.h
+ jni/../../Classes/Cocos2dFacade.h jni/../../Classes/npLinkNode.h \
+ /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/GUI/CCControlExtension/CCControlButton.h \
+ /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/GUI/CCControlExtension/CCControl.h \
+ /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/GUI/CCControlExtension/CCInvocation.h \
+ /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/ExtensionMacros.h \
+ /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/GUI/CCControlExtension/CCControlUtils.h \
+ /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/GUI/CCControlExtension/CCScale9Sprite.h \
+ /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/CCBReader/CCControlButtonLoader.h \
+ /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/CCBReader/CCControlLoader.h \
+ /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/CCBReader/CCNodeLoader.h \
+ /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/CCBReader/../GUI/CCControlExtension/CCInvocation.h \
+ /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/CCBReader/CCBReader.h \
+ /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/CCBReader/../GUI/CCControlExtension/CCControl.h \
+ /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/CCBReader/../GUI/CCControlExtension/CCControlButton.h
 
 jni/../../Classes/HelloWorldScene.h:
 
@@ -641,10 +653,36 @@ jni/../../Classes/HelloWorldScene.h:
 
 /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../CocosDenshion/android/../include/Export.h:
 
-jni/../../Classes/npLinkNode.h:
-
 /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../cocos2dx/kazmath/include/../../menu_nodes/CCMenuItem.h:
 
 /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../cocos2dx/include/../touch_dispatcher/CCTouch.h:
 
 jni/../../Classes/Cocos2dFacade.h:
+
+jni/../../Classes/npLinkNode.h:
+
+/cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/GUI/CCControlExtension/CCControlButton.h:
+
+/cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/GUI/CCControlExtension/CCControl.h:
+
+/cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/GUI/CCControlExtension/CCInvocation.h:
+
+/cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/ExtensionMacros.h:
+
+/cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/GUI/CCControlExtension/CCControlUtils.h:
+
+/cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/GUI/CCControlExtension/CCScale9Sprite.h:
+
+/cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/CCBReader/CCControlButtonLoader.h:
+
+/cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/CCBReader/CCControlLoader.h:
+
+/cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/CCBReader/CCNodeLoader.h:
+
+/cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/CCBReader/../GUI/CCControlExtension/CCInvocation.h:
+
+/cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/CCBReader/CCBReader.h:
+
+/cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/CCBReader/../GUI/CCControlExtension/CCControl.h:
+
+/cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../extensions/CCBReader/../GUI/CCControlExtension/CCControlButton.h:
