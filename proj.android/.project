@@ -48,6 +48,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>Box2D</name>
+			<type>2</type>
+			<location>D:/SDKs/cocos2d-2.0-x-2.0.2/external/Box2D</location>
+		</link>
+		<link>
 			<name>Classes</name>
 			<type>2</type>
 			<location>D:/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/Classes</location>
@@ -61,6 +66,11 @@
 			<name>cocos2dx</name>
 			<type>2</type>
 			<location>D:/Ryuj/cocos2d-x/cocos2dx</location>
+		</link>
+		<link>
+			<name>external</name>
+			<type>2</type>
+			<location>D:/SDKs/cocos2d-2.0-x-2.0.2/external</location>
 		</link>
 		<link>
 			<name>touch_dispatcher</name>

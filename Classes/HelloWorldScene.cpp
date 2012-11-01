@@ -5,6 +5,7 @@
 #include "Cocos2dFacade.h"
 #include "npLinkNode.h"
 
+
 using namespace cocos2d;
 using namespace CocosDenshion;
 
