@@ -188,7 +188,8 @@ obj/local/armeabi/objs-debug/game_shared/hellocpp/main.o: \
  /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../cocos2dx/support/data_support/uthash.h \
  jni/../../Classes/HelloWorldScene.h \
  /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../CocosDenshion/android/../include/SimpleAudioEngine.h \
- /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../CocosDenshion/android/../include/Export.h
+ /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../CocosDenshion/android/../include/Export.h \
+ jni/../../Classes/npLinkNode.h
 
 jni/../../Classes/AppDelegate.h:
 
@@ -569,3 +570,5 @@ jni/../../Classes/HelloWorldScene.h:
 /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../CocosDenshion/android/../include/SimpleAudioEngine.h:
 
 /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../CocosDenshion/android/../include/Export.h:
+
+jni/../../Classes/npLinkNode.h:

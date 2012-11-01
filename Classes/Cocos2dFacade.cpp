@@ -11,26 +11,26 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
-CCSprite* Cocos2dFacade::CreateSprite(char* file_name,CCRect& rect)
+CCSprite* Cocos2dFacade::CreateSprite(const char* file_name,const CCRect& rect)
 {
 	CCSprite* sp = CCSprite::create(file_name,rect);
 	return sp;
 }
 
-CCSprite* Cocos2dFacade::CreateSprite(char* file_name,CCRect& rect,CCSize& size)
+CCSprite* Cocos2dFacade::CreateSprite(const char* file_name,const CCRect& rect,const CCSize& size)
 {
 	CCSprite* sp = CCSprite::create(file_name,rect);
 	sp->setContentSize(size);
 	return sp;
 }
-cocos2d::CCSprite* Cocos2dFacade::CreateSprite(char* file_name,cocos2d::CCRect& rect,cocos2d::CCSize& size,cocos2d::CCPoint& loc)
+CCSprite* Cocos2dFacade::CreateSprite(const char* file_name,const cocos2d::CCRect& rect,const cocos2d::CCSize& size,const cocos2d::CCPoint& loc)
 {
 	CCSprite* sp = CCSprite::create(file_name,rect);
 	sp->setContentSize(size);
 	sp->setPosition(loc);
 	return sp;
 }
-cocos2d::CCSprite* Cocos2dFacade::CreateSprite(char* file_name,cocos2d::CCRect& rect,cocos2d::CCSize& size,cocos2d::CCPoint& loc,int tag)
+CCSprite* Cocos2dFacade::CreateSprite(const char* file_name,const cocos2d::CCRect& rect,const cocos2d::CCSize& size,const cocos2d::CCPoint& loc,const int tag)
 {
 	CCSprite* sp = CCSprite::create(file_name,rect);
 	sp->setContentSize(size);
@@ -90,9 +90,10 @@ CCNode* Cocos2dFacade::FindChildByTag(CCLayer* layer,int tag)
 	return layer->getChildByTag(tag);
 }
 
-CCNode* Cocos2dFacade::(cocos2d::CCNode** array,int length,float x,float y)
+CCNode* Cocos2dFacade::FindChildByPoint(cocos2d::CCNode** array,int length,float x,float y,int* out_number)
 {
 	for(int i = 0 ; i < length ; i++){
+		if(array[i] == 0)	continue;
 		CCSize size = array[i]->getContentSize();
 		float ox,oy;
 		float width = size.width;
@@ -101,6 +102,9 @@ CCNode* Cocos2dFacade::(cocos2d::CCNode** array,int length,float x,float y)
 
 		if(ox <= x && x <= ox + width){
 			if(oy <= y && y <= oy + height){
+				if(out_number != 0){
+					*out_number = i;
+				}
 				return array[i];
 			}
 		}
@@ -108,25 +112,83 @@ CCNode* Cocos2dFacade::(cocos2d::CCNode** array,int length,float x,float y)
 	return 0;
 }
 
-CCNode* Cocos2dFacade::FindChildByPoint(cocos2d::CCNode*** array,int firstLength,int secondLength,float x,float y)
+void Cocos2dFacade::MoveTo(CCNode* target,const float duration,const float x,const float y)
 {
-	for(int h = 0 ; h < firstLength ; y++){
-		for(int w = 0 ; w < secondLength ; w++){
-			float ox,oy;
-			float width,height;
-			CCSize size = (array[h][w])->getContentSize();
-			width = size.width;
-			height = size.height;
-			(array[h][w]->getPosition(&ox,&oy));
-
-
-			if(ox <= x && x <= ox + width){
-				if(oy <= y && y <= oy + height){
-					return array[h][w];
-				}
-			}
-		}
-	}
-	return 0;
+	CCFiniteTimeAction* action = CCMoveTo::actionWithDuration(duration,ccp(x,y));
+	target->runAction(CCSequence::actions(action,0));
 }
+
+bool Cocos2dFacade::CheckRectIntersectsRect(CCNode* nodeA,CCNode* nodeB)
+{
+	float x,y,width,height;
+	float x1,y1,width1,height1;
+	CCSize size,size1;
+
+	CCRect rect1,rect2;
+
+	nodeA->getPosition(&x,&y);
+	size = nodeA->getContentSize();
+	width = size.width;
+	height = size.height;
+	rect1 = CCRectMake(x,y,width,height);
+
+	nodeB->getPosition(&x1,&y1);
+	size1 = nodeB->getContentSize();
+	width1 = size1.width;
+	height1 = size1.height;
+	rect2 = CCRectMake(x1,y1,width1,height1);
+
+	return CCRect::CCRectIntersectsRect(rect1,rect2) ? true : false;
+}
+
+void Cocos2dFacade::PlayEffectSound(const char* fileName,bool bLoop)
+{
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(fileName, bLoop);
+}
+void Cocos2dFacade::PlayBackgroundSound(const char* fileName,bool bLoop)
+{
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(fileName,bLoop);
+}
+
+CCAnimate* Cocos2dFacade::CreateTextureFrameAnimate(float delay,VAR_TYPE_PCHARES)
+{
+	CCAnimation* anim = CCAnimation::create();
+	anim->setDelayPerUnit(delay);
+	va_list ap;
+
+	va_start(ap,delay);
+	char* fileName = 0;
+	do{
+		 fileName = va_arg(ap,char*);
+		 if(fileName == 0) break;
+		 anim->addSpriteFrameWithFileName(fileName);
+	}while(1);
+	va_end(ap);
+
+	CCAnimate* animate = CCAnimate::create(anim);
+
+	return animate;
+}
+
+void Cocos2dFacade::SetTextureFrameAnimationForever(CCNode* target,CCAnimate* anim)
+{
+	CCRepeatForever* forever = CCRepeatForever::create(anim);
+	target->runAction(forever);
+}
+
+void Cocos2dFacade::SetTextureFrameAction(CCNode* target,CCAction* act)
+{
+	target->runAction(act);
+}
+
+CCAction* Cocos2dFacade::CreateReverseTextureFrame(CCAnimate* anim)
+{
+	CCRepeatForever* forever = CCRepeatForever::create(anim);
+	return forever->reverse();
+}
+CCAction* Cocos2dFacade::CreateReverseTextureFrame(CCActionInterval* act)
+{
+	return act->reverse();
+}
+
 

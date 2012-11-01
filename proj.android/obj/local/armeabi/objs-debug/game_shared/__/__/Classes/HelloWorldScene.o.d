@@ -212,8 +212,10 @@ obj/local/armeabi/objs-debug/game_shared/__/__/Classes/HelloWorldScene.o: \
  /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../cocos2dx/support/data_support/uthash.h \
  /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../CocosDenshion/android/../include/SimpleAudioEngine.h \
  /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../CocosDenshion/android/../include/Export.h \
+ jni/../../Classes/npLinkNode.h \
  /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../cocos2dx/kazmath/include/../../menu_nodes/CCMenuItem.h \
- /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../cocos2dx/include/../touch_dispatcher/CCTouch.h
+ /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../cocos2dx/include/../touch_dispatcher/CCTouch.h \
+ jni/../../Classes/Cocos2dFacade.h
 
 jni/../../Classes/HelloWorldScene.h:
 
@@ -639,6 +641,10 @@ jni/../../Classes/HelloWorldScene.h:
 
 /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../CocosDenshion/android/../include/Export.h:
 
+jni/../../Classes/npLinkNode.h:
+
 /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../cocos2dx/kazmath/include/../../menu_nodes/CCMenuItem.h:
 
 /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../cocos2dx/include/../touch_dispatcher/CCTouch.h:
+
+jni/../../Classes/Cocos2dFacade.h:
