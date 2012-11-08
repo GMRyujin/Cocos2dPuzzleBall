@@ -2,7 +2,8 @@
 
 #include "cocos2d.h"
 #include "HelloWorldScene.h"
-#include "StartScene.h"
+#include "Scene/StartScene.h"
+#include "Scene/MenuScene.h"
 
 USING_NS_CC;
 
@@ -32,7 +33,10 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     // create a scene. it's an autorelease object
     //CCScene *pScene = HelloWorld::scene();
+
+    //시작 화면으로 시작.
     CCScene* pScene = StartScene::scene();
+
 
     // run
     pDirector->runWithScene(pScene);

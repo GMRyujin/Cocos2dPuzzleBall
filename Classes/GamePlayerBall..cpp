@@ -1,5 +1,4 @@
 #include "GamePlayerBall.h"
-#include "Cocos2dFacade.h"
 
 GamePlayerBall::GamePlayerBall(char* fileName,float width,float height)
 {

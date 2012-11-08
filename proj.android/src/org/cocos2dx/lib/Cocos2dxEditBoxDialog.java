@@ -136,7 +136,6 @@ public class Cocos2dxEditBoxDialog extends Dialog {
 	public Cocos2dxEditBoxDialog(Context context, EditBoxMessage msg) {
 		//super(context, R.style.Theme_Translucent);
 		super(context, android.R.style.Theme_Translucent_NoTitleBar_Fullscreen);
-		// TODO Auto-generated constructor stub
 		mParentActivity = (Cocos2dxActivity)context;
 		mMsg = msg;
 	}
@@ -150,7 +149,6 @@ public class Cocos2dxEditBoxDialog extends Dialog {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		
 		getWindow().setBackgroundDrawable(new ColorDrawable(0x80000000));
@@ -331,7 +329,6 @@ public class Cocos2dxEditBoxDialog extends Dialog {
 
 	@Override
 	protected void onStop() {
-		// TODO Auto-generated method stub
 		super.onStop();
 		Log.d("EditBox", "onStop...");
 	}

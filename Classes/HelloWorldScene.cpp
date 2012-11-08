@@ -2,7 +2,7 @@
 #include "SimpleAudioEngine.h"
 #include "../../menu_nodes/CCMenuItem.h"
 #include "../touch_dispatcher/CCTouch.h"
-#include "Cocos2dFacade.h"
+#include <ryAndroidLib/Cobo2d/Facade/Cocos2dFacade.h>
 #include "npLinkNode.h"
 #include "CCControlButton.h"
 #include "CCControlButtonLoader.h"
@@ -95,8 +95,6 @@ bool HelloWorld::init() {
 	Cocos2dFacade::AddChild(this,animSprite);
 
 	Cocos2dFacade::MoveTo(playerBall,30,10,10);
-	Cocos2dFacade::PlayBackgroundSound("result6.wma");
-
 
 //	CCScale9Sprite* btnSp = CCScale9Sprite::create("start_button.png");
 //	extension::CCControlButton* button = CCControlButton::buttonWithBackgroundSprite(

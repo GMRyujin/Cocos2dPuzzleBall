@@ -58,6 +58,11 @@
 			<location>D:/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/Classes</location>
 		</link>
 		<link>
+			<name>Facade</name>
+			<type>2</type>
+			<location>D:/SDKs/cocos2d-2.0-x-2.0.2/ryAndroidLib/Cobo2d/Facade</location>
+		</link>
+		<link>
 			<name>Resources</name>
 			<type>2</type>
 			<locationURI>PARENT-1-PROJECT_LOC/Resources</locationURI>
@@ -71,6 +76,11 @@
 			<name>external</name>
 			<type>2</type>
 			<location>D:/SDKs/cocos2d-2.0-x-2.0.2/external</location>
+		</link>
+		<link>
+			<name>ryAndroidLib</name>
+			<type>2</type>
+			<location>D:/SDKs/cocos2d-2.0-x-2.0.2/ryAndroidLib</location>
 		</link>
 		<link>
 			<name>touch_dispatcher</name>
