@@ -50,14 +50,20 @@ bool StageOneScene::init() {
 	bTouchDown = false;
 	Cocos2dFacade::SetSchedule(this,schedule_selector(StageOneScene::ccUpdate));
 
+	//TODO 파워를 표시해주는 라벨을 만든다.
+	powerLabel = CCLabelTTF::create("Power : ","Thonburi",34);
+	pLabel->setPosition(ccp(size.width/2,size.height-20));
+	this->addChild(powerLabel);
 
+	//백그라운드 설정
 	SetBackground();
-	SetBlocks();
-
+	//TODO 물리월드 생성
+	SetWorld();
 	//TODO 플레이어 설정
 	SetPlayerBall(30,500);
+	//TODO 블록을 설정
+	SetBlocks();
 
-	//SetB2Box();//물리엔진 적용
 
 	return true;
 }
@@ -67,6 +73,15 @@ void StageOneScene::menuCloseCallback(CCObject* pSender) {
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	exit(0);
+#endif
+}
+
+
+void StageOneScene::SetWorld()
+{
+#ifdef FLAG_APPLY_PHYSICS
+	world = new b2World(b2Vec2(0,-9.8f));
+	world->SetAllowSleeping(false);
 #endif
 }
 
@@ -86,9 +101,21 @@ void StageOneScene::SetPlayerBall(float x,float y) {
 	//플레이어의 볼을 설정한다.
 	CCDirector* director = CCDirector::sharedDirector();
 	CCSize winSize = director->getWinSize();
+#ifndef FLAG_APPLY_PHYSICS
 	playerBall = Cocos2dFacade::CreateSprite("small_auq_ball.png");
 	playerBall->setPosition(ccp(x,y));
 	Cocos2dFacade::AddChild(this, playerBall);
+#else
+	//TODO 플레이어 생성
+	playerBall = cbFacade::CreateDynamicSpriteCircle("small_auq_ball.png",this,world,b2Vec2(50,50),1,1,1);
+	cbFacade::SetTransform(playerBall,50,50,0);
+	cbFacade::ApplyBodyInLayer(this,playerBall);
+
+	//TODO 플레이어를 받칠 그라운드를 만든다.
+	ground = cbFacade::CreateStaticSpriteBody("small_concrete_block.jpg",this,world,b2Vec2(100,30));
+	cbFacade::SetTransform(ground,30,10,0);
+	cbFacade::ApplyBodyInLayer(this,ground);
+#endif
 }
 
 void StageOneScene::SetBlocks(){
@@ -97,6 +124,8 @@ void StageOneScene::SetBlocks(){
 	int maxHeight = size.height - 100;
 
 	// TODO 스프라이트들을 초기화하고 초기위치를 지정한다.
+#ifndef FLAG_APPLY_PHYSICS
+
 #define IF_SETTING_THE_RANDOM_BLOCK_THEN_THIS_CHANGED
 #ifdef FALG_STAGEONE_RANDOM_BLOCK
 	for(int i= 0 ; i < BLOCK_SIZE ; i++){
@@ -132,36 +161,22 @@ void StageOneScene::SetBlocks(){
 		Cocos2dFacade::AddChild(this,sp[i]);
 	}
 #endif
+#else
+	//TODO 블록을 초기화 시켜준다.
+	for(int i = 0 ; i < PHYSICS_BLOCK_NUM ; i++)	blocks[i] = NULL;
+
+	//TODO 물리 박스 추가
+	int width,height;
+	width = 100;
+	height = 60;
+	for(int i = 0 ; i < 10 ; i++){
+		blocks[i] = cbFacade::CreateStaticSpriteBody("small_concrete_block.jpg",this,world,b2Vec2(width,height));
+		cbFacade::SetTransform(blocks[i],size.width/2.0f,(float)(height*i),0);
+		cbFacade::ApplyBodyInLayer(this,blocks[i]);
+	}
+#endif
 }
 
-
-void StageOneScene::SetB2Box()
-{
-	//TODO 물리박스를 추가한다.
-
-
-}
-
-b2Body* StageOneScene::AddCrate()
-{
-	b2Body* body;
-	b2Vec2 vertice[4];
-	vertice[0] = b2Vec2(0,0);
-	vertice[0] = b2Vec2(0,500);
-	vertice[0] = b2Vec2(500,0);
-	vertice[0] = b2Vec2(500,500);
-
-	b2PolygonShape* shape = new b2PolygonShape();
-	shape->Set(vertice,4);
-
-	//Create the body
-	b2BodyDef* bodyDef = new b2BodyDef();
-	bodyDef->position = b2Vec2(100,500);
-	bodyDef->active = true;
-
-
-	return body;
-}
 
 void StageOneScene::ccTouchesBegan(CCSet* pTouch,CCEvent* pEvent)
 {
@@ -170,10 +185,11 @@ void StageOneScene::ccTouchesBegan(CCSet* pTouch,CCEvent* pEvent)
 	//현재 좌표를 오픉지넬 좌표로 변환한다.
 	CCPoint location = touch->locationInView();
 	location = CCDirector::sharedDirector()->convertToGL(location);
+
+	//TODO 터치를 처리한다.
+	power = 0;
 	bTouchDown = true;
 	CCLOG("Touch %lf %lf",location.x,location.y);
-
-	power = 0;
 }
 
 void StageOneScene::ccTouchesEnded(CCSet *pTouch, CCEvent *pEvent) {
@@ -182,17 +198,40 @@ void StageOneScene::ccTouchesEnded(CCSet *pTouch, CCEvent *pEvent) {
 	//현재 좌표를 오픉지넬 좌표로 변환한다.
 	CCPoint location = touch->locationInView();
 	location = CCDirector::sharedDirector()->convertToGL(location);
+
+	b2Vec2 direction(location.x,location.y);
+	direction.Normalize();
+	//TODO 터치가 끝나면 파워를 공에게 준다.
 	bTouchDown = false;
-	CCLOG("Touch %lf %lf",location.x,location.y);
+	//cbFacade::ApplyForce(playerBall,b2Vec2(direction.x*power,direction.y*power));
+	cbFacade::ApplyForce(playerBall,b2Vec2(location.x*power,location.y*power));
+
+	CCLOG("Touch %lf %lf",direction.x*power,direction.y*power);
 }
 
 void StageOneScene::ccUpdate(float dt)
 {
 	//TODO 수학라이브러리를 이용한 중력처리 (볼 플레이어)
 
-	//TODO 파워의 계산을 한다.
+	//TODO 계속 누르는 상태라면 파워를 올려준다.
+	if(bTouchDown == true){
+		power+=10000.0f*dt;
+		char buffer[128];
+		sprintf(buffer,"Power : %lf",power);
+		powerLabel->setString(buffer);
+		CCLOG(buffer);
+	}else{
+
+	}
 
 	//TODO 오브젝트들을의 업데이트 구문들을 추가한다.
 
 	//TODO 월드를 업데이트 해준다.
+#ifdef FLAG_APPLY_PHYSICS
+	world->Step(dt,8,3);
+	for(b2Body* b = world->GetBodyList() ; b ; b = b->GetNext()){
+		cbFacade::UpdateSpriteByBody(b);
+	}
+#endif
+
 }
