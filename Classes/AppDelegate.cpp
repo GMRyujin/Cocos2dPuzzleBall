@@ -23,7 +23,12 @@ bool AppDelegate::applicationDidFinishLaunching()
     pDirector->setOpenGLView(CCEGLView::sharedOpenGLView());
 
     // enable High Resource Mode(2x, such as iphone4) and maintains low resource on other devices.
-    // pDirector->enableRetinaDisplay(true);
+    //TODO  Cocos2d의 환경설정을 한다.
+    //pDirector->enableRetinaDisplay(true);
+    //cocos2d::CCEGLView* view = cocos2d::CCEGLView::sharedOpenGLView();
+    //view->setFrameSize(400,100);
+    //view->setViewPortInPoints(0,0,400,100);
+    //view->setContentScaleFactor(0.5f);
 
     // turn on display FPS
     pDirector->setDisplayStats(true);
@@ -33,6 +38,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     // create a scene. it's an autorelease object
     //CCScene *pScene = HelloWorld::scene();
+
 
     //시작 화면으로 시작.
     CCScene* pScene = StartScene::scene();

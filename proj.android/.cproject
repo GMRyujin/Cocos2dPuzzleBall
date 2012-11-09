@@ -44,6 +44,10 @@
 									<listOptionValue builtIn="false" value="&quot;D:\Ryuj\ryAndroidLib&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;D:\SDKs\cocos2d-2.0-x-2.0.2\ryAndroidLib&quot;"/>
 								</option>
+								<option id="org.eclipse.cdt.build.core.settings.holder.undef.incpaths.459754564" superClass="org.eclipse.cdt.build.core.settings.holder.undef.incpaths" valueType="undefIncludePath">
+									<listOptionValue builtIn="false" value="D:/SDKs/cocos2d-2.0-x-2.0.2/external/"/>
+									<listOptionValue builtIn="false" value="D:/SDKs/cocos2d-2.0-x-2.0.2/external/Box2D"/>
+								</option>
 								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.374545800" languageId="org.eclipse.cdt.core.parser.upc.upc" languageName="UPC" sourceContentType="org.eclipse.cdt.core.parser.upc.upcSource" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 							</tool>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.1776953022" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder">
@@ -65,6 +69,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Box2D"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Classes"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Facade"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="ryAndroidLib"/>

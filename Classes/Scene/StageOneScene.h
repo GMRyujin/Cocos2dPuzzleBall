@@ -11,6 +11,7 @@
 #include <Box2D/Box2D.h>
 #include "cocos2d.h"
 #include "PuzzleBallObject/PuzzleBallDef.h"
+#include <math.h>
 
 using namespace cocos2d;
 
@@ -26,24 +27,31 @@ public:
 	static cocos2d::CCScene* scene();
 	void menuCloseCallback(CCObject* pSender);
 	CREATE_FUNC (StageOneScene);
-	/* Touches */
 
+	/* Touches */
 	virtual void ccTouchesEnded(CCSet *pTouches, CCEvent *pEvent);
 	virtual void ccTouchesBegan(CCSet *pTouches, CCEvent *pEvent);
 	void ccUpdate(float dt);
-	void SetBackground();
 
-	//World를 추가
+	//배경화면을 설정한다.
+	void SetBackground();
+	//World를 설정한다.
 	void SetWorld();
-	//플레이어 추가ㅣ
+	//플레이어 설정한다.
 	void SetPlayerBall(float x,float y);
-	//블록 추가
+	//블록 설정한다.
 	void SetBlocks();
+	//목표지점 추가
+	void SetGoal(float x,float y);
+	//공이 목표지점에 닿았는지 확인한다.
+	bool CheckGoal();
+
 
 	GETTER(bool,bTouchDown);
 	SETTER(bool,bTouchDown);
 
 private:
+	CCSprite* goal;
 	CCSprite* background;
 	bool bTouchDown;
 	float power;

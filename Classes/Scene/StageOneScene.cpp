@@ -60,9 +60,11 @@ bool StageOneScene::init() {
 	//TODO 물리월드 생성
 	SetWorld();
 	//TODO 플레이어 설정
-	SetPlayerBall(30,500);
+	SetPlayerBall(50,50);
 	//TODO 블록을 설정
 	SetBlocks();
+	//TODO  목표지점 설정
+	SetGoal(size.width/10,size.height*2/3);
 
 
 	return true;
@@ -75,16 +77,6 @@ void StageOneScene::menuCloseCallback(CCObject* pSender) {
 	exit(0);
 #endif
 }
-
-
-void StageOneScene::SetWorld()
-{
-#ifdef FLAG_APPLY_PHYSICS
-	world = new b2World(b2Vec2(0,-9.8f));
-	world->SetAllowSleeping(false);
-#endif
-}
-
 void StageOneScene::SetBackground(){
 	// TODO 백그라운드를 설정한다.
 	background = Cocos2dFacade::CreateSprite("game_background.png");
@@ -97,6 +89,13 @@ void StageOneScene::SetBackground(){
 	Cocos2dFacade::AddChild(this,background);
 }
 
+void StageOneScene::SetWorld()
+{
+#ifdef FLAG_APPLY_PHYSICS
+	world = cbFacade::CreateWorld(b2Vec2(0,-98.0f),false);
+#endif
+}
+
 void StageOneScene::SetPlayerBall(float x,float y) {
 	//플레이어의 볼을 설정한다.
 	CCDirector* director = CCDirector::sharedDirector();
@@ -107,13 +106,21 @@ void StageOneScene::SetPlayerBall(float x,float y) {
 	Cocos2dFacade::AddChild(this, playerBall);
 #else
 	//TODO 플레이어 생성
-	playerBall = cbFacade::CreateDynamicSpriteCircle("small_auq_ball.png",this,world,b2Vec2(50,50),1,1,1);
-	cbFacade::SetTransform(playerBall,50,50,0);
+	playerBall = cbFacade::CreateDynamicSpriteCircle("small_auq_ball.png",this,world,b2Vec2(60,60),1,0.8f,1);
+	cbFacade::SetTransform(playerBall,x,y,0);
 	cbFacade::ApplyBodyInLayer(this,playerBall);
+
+	/* 캐릭터의 무게를 설정해줌 */
+	b2MassData data;
+	playerBall->GetMassData(&data);
+	data.I = 10;
+	data.center = b2Vec2(0.5f,0.5f);
+	data.mass = 1;//1kg
+	playerBall->SetMassData(&data);
 
 	//TODO 플레이어를 받칠 그라운드를 만든다.
 	ground = cbFacade::CreateStaticSpriteBody("small_concrete_block.jpg",this,world,b2Vec2(100,30));
-	cbFacade::SetTransform(ground,30,10,0);
+	cbFacade::SetTransform(ground,x-20,y-40,0);
 	cbFacade::ApplyBodyInLayer(this,ground);
 #endif
 }
@@ -162,6 +169,8 @@ void StageOneScene::SetBlocks(){
 	}
 #endif
 #else
+#define BLOCK_HEIGHT_OFFSET 50
+#define BLOCK_WIDTH_OFFSET 50
 	//TODO 블록을 초기화 시켜준다.
 	for(int i = 0 ; i < PHYSICS_BLOCK_NUM ; i++)	blocks[i] = NULL;
 
@@ -169,12 +178,38 @@ void StageOneScene::SetBlocks(){
 	int width,height;
 	width = 100;
 	height = 60;
+
+	//세로 벽
 	for(int i = 0 ; i < 10 ; i++){
 		blocks[i] = cbFacade::CreateStaticSpriteBody("small_concrete_block.jpg",this,world,b2Vec2(width,height));
-		cbFacade::SetTransform(blocks[i],size.width/2.0f,(float)(height*i),0);
+		cbFacade::SetTransform(blocks[i],size.width/2.0f,(float)(height*i) + BLOCK_HEIGHT_OFFSET,0);
 		cbFacade::ApplyBodyInLayer(this,blocks[i]);
 	}
+
+	//가로 벽
+	int j = 0;
+	for(int i = 10 ; i < 13 ; i++){
+		blocks[i] = cbFacade::CreateStaticSpriteBody("small_concrete_block.jpg",this,world,b2Vec2(width,height));
+		cbFacade::SetTransform(blocks[i],(float)width*j + BLOCK_WIDTH_OFFSET,size.height/2,0);
+		cbFacade::ApplyBodyInLayer(this,blocks[i]);
+		j++;
+	}
 #endif
+}
+
+void StageOneScene::SetGoal(float x,float y)
+{
+	goal = Cocos2dFacade::CreateSprite("Goal.png");
+	//Cocos2dFacade::
+	goal->setPosition(ccp(x,y));
+	Cocos2dFacade::SetSize(goal,100,100);
+	Cocos2dFacade::AddChild(this,goal);
+}
+
+bool StageOneScene::CheckGoal()
+{
+	CCSprite* ball = (CCSprite*)playerBall->GetUserData();
+	return Cocos2dFacade::CheckRectIntersectsRect(ball,goal);
 }
 
 
@@ -189,49 +224,71 @@ void StageOneScene::ccTouchesBegan(CCSet* pTouch,CCEvent* pEvent)
 	//TODO 터치를 처리한다.
 	power = 0;
 	bTouchDown = true;
-	CCLOG("Touch %lf %lf",location.x,location.y);
+	//CCLOG("Touch %lf %lf",location.x,location.y);
 }
 
 void StageOneScene::ccTouchesEnded(CCSet *pTouch, CCEvent *pEvent) {
 	//터치를하면 불러온다.
 	cocos2d::CCTouch* touch = (CCTouch*) (pTouch->anyObject());
-	//현재 좌표를 오픉지넬 좌표로 변환한다.
+	//현재 좌표를 오픈지엘 좌표로 변환한다.
 	CCPoint location = touch->locationInView();
 	location = CCDirector::sharedDirector()->convertToGL(location);
 
 	b2Vec2 direction(location.x,location.y);
 	direction.Normalize();
+
 	//TODO 터치가 끝나면 파워를 공에게 준다.
 	bTouchDown = false;
 	//cbFacade::ApplyForce(playerBall,b2Vec2(direction.x*power,direction.y*power));
-	cbFacade::ApplyForce(playerBall,b2Vec2(location.x*power,location.y*power));
+	cbFacade::ApplyForce(playerBall,b2Vec2(direction.x*1000,direction.y*1000));
 
-	CCLOG("Touch %lf %lf",direction.x*power,direction.y*power);
+
+	//CCLOG("b2_maxFloat : %lf",b2_maxFloat);
+	//CCLOG("Player Ball Mass: %lf",playerBall->GetMass());
+	//CCLOG("Player Ball Mass: %lf",playerBall->GetInertia());
+	//CCLOG("Location : %lf, %lf",location.x,location.y);
+	//CCLOG("direction : %lf, %lf",direction.x,direction.y);
+	//CCLOG("Power :  %lf",power);
 }
 
 void StageOneScene::ccUpdate(float dt)
 {
-	//TODO 수학라이브러리를 이용한 중력처리 (볼 플레이어)
-
 	//TODO 계속 누르는 상태라면 파워를 올려준다.
 	if(bTouchDown == true){
-		power+=10000.0f*dt;
+		power+=10*dt;
 		char buffer[128];
 		sprintf(buffer,"Power : %lf",power);
 		powerLabel->setString(buffer);
 		CCLOG(buffer);
-	}else{
-
 	}
-
-	//TODO 오브젝트들을의 업데이트 구문들을 추가한다.
-
-	//TODO 월드를 업데이트 해준다.
 #ifdef FLAG_APPLY_PHYSICS
+	//TODO 월드를 업데이트 해준다.
 	world->Step(dt,8,3);
+	//TODO 오브젝트들을의 업데이트 구문들을 추가한다.
 	for(b2Body* b = world->GetBodyList() ; b ; b = b->GetNext()){
 		cbFacade::UpdateSpriteByBody(b);
 	}
+
+	if(playerBall->GetPosition().y*PTM_RATIO < -100){
+		world->DestroyBody(playerBall);
+		SetPlayerBall(50,50);
+	}
+
+	if(CheckGoal()){
+		//TODO 골에 닿았을 경우 게임의 점수를 표시해주고, 다음으로 넘어가게 한다.
+
+
+		//볼을 삭제한다.
+		playerBall->SetAwake(false);
+		cbFacade::RemoveAndCleanup(playerBall,this,world);
+
+		//물리 계산과 코코스 게산을 멈춘다.
+		world->SetAllowSleeping(true);
+		CCDirector::sharedDirector()->stopAnimation();
+	}
 #endif
+
+
+
 
 }

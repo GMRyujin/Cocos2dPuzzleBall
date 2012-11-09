@@ -50,7 +50,7 @@
 		<link>
 			<name>Box2D</name>
 			<type>2</type>
-			<location>D:/SDKs/cocos2d-2.0-x-2.0.2/external/Box2D</location>
+			<location>D:/SDKs/cocos2d-2.0-x-2.0.2/Box2D</location>
 		</link>
 		<link>
 			<name>Classes</name>

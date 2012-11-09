@@ -267,6 +267,7 @@ obj/local/armeabi/objs-debug/game_shared/__/__/Classes/Scene/StartScene.o: \
  /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../Box2D/../ryAndroidLib/Cobo2d/Facade/Box2dFacade.h \
  /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../Box2D/../Box2D/Box2d.h \
  /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../Box2D/../ryAndroidLib/Cobo2d/Facade/cbFacade.h \
+ /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../Box2D/../ryAndroidLib/Cobo2d/Facade/../Cocos2d2Box2dDef.h \
  /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../Box2D/../ryAndroidLib/Cobo2d/Facade/Cocos2dFacade.h \
  /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../Box2D/../ryAndroidLib/Cobo2d/Facade/Box2dFacade.h \
  /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../Box2D/../ryAndroidLib/Cobo2d/Facade/Cocos2dFacade.h \
@@ -821,6 +822,8 @@ jni/../../Classes/PuzzleBallObject/PuzzleBallDef.h:
 /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../Box2D/../Box2D/Box2d.h:
 
 /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../Box2D/../ryAndroidLib/Cobo2d/Facade/cbFacade.h:
+
+/cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../Box2D/../ryAndroidLib/Cobo2d/Facade/../Cocos2d2Box2dDef.h:
 
 /cygdrive/d/SDKs/cocos2d-2.0-x-2.0.2/createFirstProj/proj.android/../../Box2D/../ryAndroidLib/Cobo2d/Facade/Cocos2dFacade.h:
 

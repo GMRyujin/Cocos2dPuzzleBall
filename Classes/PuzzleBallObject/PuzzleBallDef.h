@@ -15,6 +15,8 @@ typedef class interface;
 
 #define BLOCK_SIZE 128
 
+#define WORLD_SPEED 1
+
 #define GETTER(varType,varName) 	\
 	public : virtual varType get##varName(){return varName;}
 

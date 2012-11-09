@@ -14,7 +14,8 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Scene/StageOneScene.cpp \
                    ../../Classes/Scene/StageTwoScene.cpp \
                     ../../Classes/Scene/StageThreeScene.cpp \
-                    ../../Classes/Scene/GameLayer.cpp
+                    ../../Classes/Scene/GameLayer.cpp\
+                    ../../Classes/Scene/StageLayer.cpp
                    
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 					
